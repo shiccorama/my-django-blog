@@ -1,5 +1,5 @@
 # README.md 
-########File
+####File###
 ## Introduction
 
 Welcome to the Django Blog and Post project! This web application allows users to create and manage their blogs and posts. It is built using the Django web framework and follows a simple and intuitive design.
