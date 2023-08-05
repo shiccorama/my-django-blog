@@ -1,0 +1,53 @@
+https://stackoverflow.com/questions/63392426/how-to-use-tailwindcss-with-django
+
+https://pypi.org/project/django-tailwindcss/
+
+1-pip install django-tailwindcss
+2. Download Tailwind CSS CLI file and create tailwind.config.js
+CLI file can be download from https://github.com/tailwindlabs/tailwindcss/releases
+tailwind.config.js can be found at https://tailwindcss.com/docs/installation
+3-Store tailwindcss-linux-x64 (for linux) and tailwind.config.js at the same directory of manage.py.
+4-Add tailwindcss to your settings.INSTALLED_APPS
+5-# BASE_DIR = Path(__file__).resolve().parent
+
+TAILWINDCSS_CLI_FILE = BASE_DIR / 'tailwindcss-linux-x64'
+TAILWINDCSS_CONFIG_FILE = BASE_DIR / 'tailwind.config.js'
+
+# For file mode
+TAILWINDCSS_OUTPUT_FILE = 'style.css'
+6- {% load tailwindcss %}
+<html>
+  <head>
+    ...
+    {% tailwindcss %}
+    ...
+  </head>
+  ...
+</html>
+7-
+inside tailwindcss.config.js :
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./blog_app/templates/blog/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+8- don't forget to make static folder inside your blog_app and add folders for css and js
+
+# Settings for Tailwindcss
+TAILWINDCSS_CLI_FILE = BASE_DIR / 'tailwindcss-linux-x64'
+TAILWINDCSS_CONFIG_FILE = BASE_DIR / 'tailwind.config.js'
+
+# For file mode
+TAILWINDCSS_OUTPUT_FILE = '../blog_app/static/blog/css/tailwindcss_output.css'
+
+9- don't forget to add these to base.html :
+{% load tailwindcss %}
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {% tailwindcss %}
+        <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
