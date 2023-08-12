@@ -69,9 +69,9 @@
                   <li>
                     <a
                       class="text-gray-500 transition hover:text-white"
-                      href="/"
+                      href="{% url 'user-profile' %}"
                     >
-                      Calenders
+                      Profile
                     </a>
                   </li>
       
@@ -85,24 +85,42 @@
                   </li>
                 </ul>
               </nav>
-      
               <div class="flex items-center gap-4">
+                {% if user.is_authenticated %}
                 <div class="sm:flex sm:gap-4">
                   <a
                     class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                    href="/"
+                    href="{% url 'user-profile' %}"
+                  >
+                    Profile
+                  </a>
+                 </div>
+                 <div class="hidden sm:flex">
+                  <a
+                    class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+                    href="{% url 'user-logout' %}"
+                  >
+                    Logout
+                  </a>
+                </div>
+              {% else %}
+                <div class="sm:flex sm:gap-4">
+                  <a
+                    class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                    href="{% url 'user-login' %}"
                   >
                     Login
                   </a>
-      
+                </div>
                   <div class="hidden sm:flex">
                     <a
                       class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-                      href="/"
+                      href="{% url 'user-register' %}"
                     >
                       Register
                     </a>
                   </div>
+              {% endif %}
                 </div>
       
                 <div class="block md:hidden">

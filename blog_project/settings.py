@@ -143,3 +143,9 @@ TAILWINDCSS_OUTPUT_FILE = '../blog_app/static/blog/css/tailwindcss_output.css'
 # crispy form for tailwindcss 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+# login redirection page
+LOGIN_REDIRECT_URL = "blog-home"
+
+# Enforce user to login before editing their profile
+LOGIN_URL = "user-login"
