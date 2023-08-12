@@ -1,4 +1,6 @@
 {% load tailwindcss %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
     <html lang="en">
@@ -297,6 +299,11 @@
         <main role="main" class="w-3/4">
           <div>
             <div>
+              {% if messages %}
+                {% for msg in messages %}
+                    <div class="alert alert-success"> {{ msg }} </div>
+                {% endfor %}
+              {% endif %}
               {% block content %}{% endblock %} <!-- Here is our block! -->
             </div>
         </main>

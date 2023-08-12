@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'blog_app.apps.BlogAppConfig',
+    'user_app.apps.UserAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwindcss',
     'bootstrap5',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +139,7 @@ TAILWINDCSS_CONFIG_FILE = BASE_DIR / 'tailwind.config.js'
 
 # For file mode
 TAILWINDCSS_OUTPUT_FILE = '../blog_app/static/blog/css/tailwindcss_output.css'
+
+# crispy form for tailwindcss 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
