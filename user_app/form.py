@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
+
 
 class UserRegisterForm(UserCreationForm):
     # creating new field inside the form.
@@ -20,3 +22,17 @@ class UserRegisterForm(UserCreationForm):
         model = User  # validate which model to compare data with .
         fields = ["username", "email", "password1", "password2"]  
         # required fields, note: password2 => confirm password
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField() # creating new field inside the form.
+
+    class Meta:
+        model = User  # validate which model to compare data with .
+        fields = ["username", "email"]  
+        # required fields, username , email
+
+class ProfileUpdateForm(forms.ModelForm):
+        class Meta:
+            model = Profile  # validate which model to compare data with .
+            fields = ["image"]  
+            # required fields, image

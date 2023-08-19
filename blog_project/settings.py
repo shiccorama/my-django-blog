@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -149,3 +150,11 @@ LOGIN_REDIRECT_URL = "blog-home"
 
 # Enforce user to login before editing their profile
 LOGIN_URL = "user-login"
+
+# setting the static folder url :
+STATIC_URL = '/static/'
+# media root is setting by join base_dir at any os, because we don't know where this folder will
+# be on the server, joining a new directory with name "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# media_url is how to access "media" folder from your browser URL.
+MEDIA_URL = '/media/'
