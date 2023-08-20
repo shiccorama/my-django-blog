@@ -1,26 +1,43 @@
-{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %} 
+{% load static %}
+{% block content %}
 
-<section class="about-section">
-  <div class="container">
-    <h1>About Us</h1>
-    <p>
-      Welcome to our about page! Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Nullam vel sem vel nunc bibendum venenatis. In blandit
-      tortor vitae justo porta, sit amet commodo nulla commodo. Duis ac
-      malesuada nunc, eget ultrices mauris. Sed consectetur semper est, nec
-      convallis ex ullamcorper in.
-    </p>
-    <p>
-      Quisque nec ligula quis nunc lacinia volutpat in a turpis. Nulla facilisi.
-      Praesent hendrerit, justo vel hendrerit venenatis, erat sapien dignissim
-      risus, in ultrices libero est in eros. Vestibulum dapibus libero ligula,
-      non dapibus dui iaculis ut. In a ipsum non ante efficitur tristique vitae
-      eu ligula.
-    </p>
+<!-- component -->
+<div class="relative">
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about1.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold">First Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
   </div>
-</section>
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about2.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
 
-<footer>
-  <p>&copy; 2023 Dummy Company. All rights reserved.</p>
-</footer>
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Second Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about3.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Third Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about4.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Fourth Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
