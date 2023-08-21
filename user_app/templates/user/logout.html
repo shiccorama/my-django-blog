@@ -1,20 +1,27 @@
 
 {% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
-<br/>
+
+    <div class="w-full flex flex-col items-center justify-center my-10">
+        <div>
+            <img class="w-44 bg-cover" src="{% static 'blog/img/sad_1.jpg' %}">
+        </div>
+        <br/>
         <div
         class="mb-4 mx-4 rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"
         role="alert">
-        <h2> You have been logged out </h2>
-    </div>
-        <br/>
-    <div class="sm:flex sm:gap-4 mx-4">
-            <a
-            class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-            href="{% url "user-login" %}"
-            >
-            Do you want to login again?
-            </a>
+            <h2> You have been logged out </h2>
+        </div>
+            <br/>
+        <div class="sm:flex sm:gap-4 mx-4">
+                <a
+                class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                href="{% url 'user-login' %}"
+                >
+                Do you want to login again?
+                </a>
+        </div>
     </div>
 
 {% endblock content %}

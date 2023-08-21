@@ -1,4 +1,5 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base.html" %} 
+{% load static %}
 {% block content %}
   <!-- component -->
 <div class="w-full flex items-center justify-center my-10">
@@ -12,7 +13,7 @@
         </div>
         <span class="px-2 hover:bg-gray-300 cursor-pointer rounded"><i class="fas fa-ellipsis-h pt-2 text-lg"></i></span>
       </div>
-      <img class="w-full bg-cover" src="https://3.bp.blogspot.com/-Chu20FDi9Ek/WoOD-ehQ29I/AAAAAAAAK7U/mc4CAiTYOY8VzOFzBKdR52aLRiyjqu0MwCLcBGAs/s1600/DSC04596%2B%25282%2529.JPG">
+      <img class="w-full bg-cover" src="{% static 'blog/img/post-detail.jpg'%}">
       <div class="px-3 pb-2">
         <div class="pt-2">
           <i class="far fa-heart cursor-pointer"></i>
@@ -32,6 +33,25 @@
       </div>
     </div>
 </div>
-
+{% if object.author == user %}
+  <div class="w-full flex items-center justify-center my-10">
+    <div class="sm:flex sm:gap-4 mx-4">
+            <a
+            class="rounded-md bg-blue-300 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
+            href="{% url 'post-update' object.id %}"
+            >
+            Update Post
+            </a>
+    </div>
+    <div class="sm:flex sm:gap-4 mx-4">
+            <a
+            class="rounded-md bg-red-300 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
+            href="{% url 'post-delete' object.id %}"
+            >
+            Delete Post
+            </a>
+    </div>
+  </div>
+{% endif %}
 
 {% endblock content %}

@@ -5,9 +5,14 @@ from django.views.generic import (
     ListView, 
     DetailView,
     CreateView,
+    UpdateView,
+    DeleteView,
 )
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, 
+    UserPassesTestMixin
+)
 
 # if we're going to use HttpResponse, we will do like this :
 # from django.http import HttpResponse
@@ -46,6 +51,8 @@ def about(request):
 ## the pattern that url looks for to display the page correctly is :
 # <app>/<model>_<viewtype>.html ==> blog_app/Post_List.html
 
+
+## list all posts
 class PostListView(ListView):
     ''' We have taken a new class that inherits directly from ListView, and inside
     it we have to define the model which we want to do (crud ops) on it '''
@@ -54,11 +61,13 @@ class PostListView(ListView):
     context_object_name = "posts"
     ordering = ["-date_posted"]
 
+## one single post detail
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post-detail.html"
     context_object_name = "posts"
 
+## create new post
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ["title", "content"]
@@ -69,3 +78,35 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+## update existing post
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ["title", "content"]
+    template_name = "blog/post_form.html"
+    context_object_name = "posts"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # if the login user is the same as the author of the post, then delete it
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+## delete existing post
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = "blog/post_confirm_delete.html"
+    context_object_name = "posts"
+    # after deleting the post, go to home-page
+    success_url = "/"
+    # if the login user is the same as the author of the post, then delete it
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

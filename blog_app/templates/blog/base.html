@@ -18,12 +18,12 @@
     <body>
 
     <!-- header section start -->
-    <header class="bg-gray-400">
+    <header class="bg-amber-200">
         <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center justify-between">
             <div class="flex-1 md:flex md:items-center md:gap-12">
               <a class="block text-teal-600" href="{% url 'blog-home' %}">
-                <span class="teal_color text-lg">Django Blog</span>
+                <span class="teal_color text-lg hover:font-semibold">Django Blog</span>
               </a>
             </div>
       
@@ -56,16 +56,7 @@
                       Post Maker
                     </a>
                   </li>
-      
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-white"
-                      href="/"
-                    >
-                      Anouncements
-                    </a>
-                  </li>
-      
+                  
                   <li>
                     <a
                       class="text-gray-500 transition hover:text-white"
@@ -150,24 +141,32 @@
       </header>
       <!-- header section end -->
           <!-- side-menu start -->
-          <div class="flex">
+          <div class="flex relative">
           <div class="flex w-1/4">
-          <div class="flex w-full h-screen flex-col justify-between border-e bg-white">
+          <div class="flex w-full h-screen flex-col justify-between border-e bg-white sticky top-0">
             <div class="px-4 py-6">
               <div class="flex justify-center items-center">
-                <img src="{% static 'blog/img/OIP.jpeg'%}"
-                class="grid rounded-full h-32 w-32">
+                <img src="{% static 'blog/img/django.png'%}" class="grid rounded-full h-44 w-44">
               </div>
               <ul class="mt-6 space-y-1">
+
+              {% if user.is_authenticated %}
+                <li>
+                  <p class="block rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-amber-200">
+                    Welcome <span class="font-semibold">{{ user }}</span>
+                  </p>
+                </li>
+              {% else %}
                 <li>
                   <a
-                    href="#"
+                    href="{% url 'user-register' %}"
                     class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
                   >
-                    General
+                    Wait!... It's free registration
                   </a>
                 </li>
-          
+              {% endif %}
+        
                 <li>
                   <details class="group [&_summary::-webkit-details-marker]:hidden">
                     <summary
@@ -293,22 +292,30 @@
               </ul>
             </div>
           
-            <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
-              <a href="#" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
-                <img
-                  alt="Man"
-                  src="{% static 'blog/img/pic.jpg'%}"
-                  class="h-10 w-10 rounded-full object-cover"
-                />
-          
-                <div>
-                  <p class="text-xs">
-                    <strong class="block font-medium">Eric Frusciante</strong>
-          
-                    <span> eric@frusciante.com </span>
-                  </p>
-                </div>
-              </a>
+            <div class="inset-x-0 bottom-0 border border-gray-100 flex flex-row justify-center items-center">
+              <div class="w-1/3">
+                <a href="https://github.com/shiccorama" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50" target="_blank">
+                  <img
+                    alt="Man"
+                    src="{% static 'blog/img/avatar.png'%}"
+                    class="h-10 w-10 rounded-full object-cover"
+                  />
+                </a>
+              </div>
+              <div class="w-2/3">
+                <a
+                  href="https://shiccorama.github.io/myPortfolio/" target="_blank"
+                  class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
+                >
+                  Dev@Shiccorama
+                </a>
+                <a
+                  href="https://linkedin.com/in/sherif-fawzy-07111980" target="_blank"
+                  class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
+                >
+                  shiccorama@gmail.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -319,7 +326,12 @@
             <div>
               {% if messages %}
                 {% for msg in messages %}
-                    <div class="alert alert-success"> {{ msg }} </div>
+                    <div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
+                        <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <div>
+                            <span class="font-medium">{{ msg }}</span>
+                        </div>
+                    </div>
                 {% endfor %}
               {% endif %}
               {% block content %}{% endblock %} <!-- Here is our block! -->
