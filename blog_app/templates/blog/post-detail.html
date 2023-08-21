@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %} 
 {% load static %}
 {% block content %}
+
   <!-- component -->
 <div class="w-full flex items-center justify-center my-10">
   <div class=" rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-white mx-3 md:mx-0 lg:mx-0">
@@ -9,7 +10,9 @@
           <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
             <img src="{{ object.author.profile.image.url }}" alt="profilepic">
           </div>
-          <span class="pt-1 ml-2 font-bold text-sm">{{ object.author }}</span>
+          <a class="pt-1 ml-2 font-bold text-sm" href="{% url 'user-posts' object.author.username %}"  >
+            {{ object.author }}
+          </a>
         </div>
         <span class="px-2 hover:bg-gray-300 cursor-pointer rounded"><i class="fas fa-ellipsis-h pt-2 text-lg"></i></span>
       </div>
@@ -37,7 +40,7 @@
   <div class="w-full flex items-center justify-center my-10">
     <div class="sm:flex sm:gap-4 mx-4">
             <a
-            class="rounded-md bg-blue-300 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
+            class="rounded-md bg-purple-300 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
             href="{% url 'post-update' object.id %}"
             >
             Update Post
@@ -55,3 +58,5 @@
 {% endif %}
 
 {% endblock content %}
+
+
