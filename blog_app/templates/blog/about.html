@@ -1,5 +1,43 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %} 
+{% load static %}
 {% block content %}
-    <h1> Blog About Page </h1>
-{% endblock content %}
 
+<!-- component -->
+<div class="relative">
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about1.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold">First Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about2.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Second Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about3.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Third Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <img src="{% static 'blog/img/about4.jpg' %}" class="h-full w-full object-cover" alt="cover-page" />
+
+    <div class="absolute left-0 right-0 m-auto flex w-2/4 flex-col items-start justify-center gap-4 p-10 backdrop-blur-xl">
+      <h2 class="text-2xl font-bold text-white">Fourth Section</h2>
+      <p class="font-sans text-lg text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

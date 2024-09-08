@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="whitespace-nowrap rounded-full bg-purple-100 px-6 py-6 text-lg text-purple-600 m-4 flex justify-between">
+        <span class="text-2xl">Posts by "{{ view.kwargs.username }}" </span>
+        <span class="text-sm mt-2">Number of Posts "{{ page_obj.paginator.count }}" </span>
+    </div>
+    {% for post in posts %}
+        <div class="mx-4 my-4">
+            <article
+            class="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+            >
+                <div class="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
+                    <img class="w-32 rounded-full border-2 border-teal-500 mb-2" src="{{ post.author.profile.image.url }}" alt="default-profile-pic">
+                    <time datetime="2022-10-10" class="block text-xs text-gray-500">
+                        {{ post.date_posted|date:"F d, Y"  }}
+                    </time>
+
+                    <a href="#">
+                        <h3 class="mt-0.5 text-lg font-medium text-gray-900">
+                            {{ post.title }}
+                        </h3>
+                    </a>
+
+                    <p class="block text-xs text-gray-500"> {{ post.content }} </p>
+
+                    <div class="mt-4 flex flex-wrap gap-1">
+                        <a
+                        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600" href="{% url 'user-posts' post.author.username %}" >
+                        {{ post.author }} 
+                        </a>
+                        <a
+                        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
+                        href="{% url 'post-detail' post.id %}"
+                        >
+                        Read More ...
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+
+        <hr/>
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a type="button" class="border border-teal-500 bg-teal-500 text-white text-sm px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline focus:shadow-outline" href="?page=1"> First </a>
+            <a type="button" class="border border-teal-500 bg-teal-500 text-white text-sm px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline focus:shadow-outline" href="?page={{ page_obj.previous_page_number }}"> <<< </a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a type="button" class="border border-teal-500 text-purple-600 rounded-md px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline-none focus:shadow-outline" href="?page={{ num }}"> {{ num }} </a>
+            {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+                <a type="button" class="border border-teal-500 bg-teal-500 text-white text-sm px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline focus:shadow-outline" href="?page={{ num }}"> {{ num }} </a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a type="button" class="border border-teal-500 bg-teal-500 text-white text-sm px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline focus:shadow-outline" href="?page={{ page_obj.next_page_number }}"> >>> </a>
+            <a type="button" class="border border-teal-500 bg-teal-500 text-white text-sm px-2 py-2 my-4 mx-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline focus:shadow-outline" href="?page={{ page_obj.paginator.num_pages }}"> Last </a>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}
+
+

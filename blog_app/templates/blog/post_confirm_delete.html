@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="w-full flex flex-col items-center justify-center my-10">
+        <div>
+            <img class="w-44 bg-cover" src="{% static 'blog/img/bin.jpg' %}">
+        </div>
+        <br/>
+        <div
+        class="mb-4 mx-4 rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"
+        role="alert">
+            <h2> Are you sure you want to delete the post <span class="font-semibold">{{ object.title }}</span> ?</h2>
+        </div>
+            <br/>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="sm:flex sm:gap-4 mx-4">
+                        <button
+                        class="rounded-md bg-red-300 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
+                        type="submit"
+                        >
+                        Yes, Delete
+                        </button>
+                        <a
+                        class="rounded-md bg-purple-200 px-5 py-2.5 text-sm font-medium text-gray-500 shadow"
+                        href="{% url 'post-detail' object.id %}"
+                        >
+                        No, Cancel
+                        </a>
+                </div>
+            </form>
+    </div>
+
+{% endblock content %}

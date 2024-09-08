@@ -1,0 +1,52 @@
+
+{% extends "blog/base.html" %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+<div class="bg-gray-200 font-sans h-auto mt-2 w-full flex flex-row justify-center items-center">
+  <div class="card w-96 mx-auto bg-white shadow-xl hover:shadow">
+     <img class="w-32 mx-auto rounded-full -mt-20 border-8 
+     border-white" src="{{ user.profile.image.url }}" 
+     alt="default-profile-pic">
+     	<div class="text-center mt-2 text-3xl font-medium flex p-4"> 
+     		<span class="text-sm px-4"> username: </span>
+     	 	{{ user.username }}
+     	</div>
+     	<br/>
+     	<div class="text-center mt-2 text-3xl font-medium flex p-4"> 
+     		<span class="text-sm px-4"> email: </span> 
+     	 	{{ user.email }}
+     	</div>
+     	<br/>
+     	<div class="px-20 text-center mt-2 font-light text-sm m-4 flex p-4">
+     	  <p>
+     	    If you would like to update your profile, here it is :
+     	  </p>
+     	</div>
+     <div class="flex p-4">
+		<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<fieldset class="form-group">
+					    <legend class="border-bottom mb-4">Profile Info</legend>
+					    <hr class="mt-8">
+					    <br/>
+					    {{ u_form|crispy }}
+					    <br/>
+					    {{ p_form|crispy }}
+					    <br/>
+					</fieldset>
+					<br/>
+					<div class="flex flex-row justify-center items-center">
+						<div>
+							<button class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" type="submit" >
+								Update Profile
+							</button>
+						</div>
+					</div>
+			<br />
+		</form>
+     </div>
+  </div>
+</div>
+
+{% endblock content %}

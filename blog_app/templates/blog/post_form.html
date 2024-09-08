@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <section class="flex h-96 items-center justify-between mx-10">
+        <div class="w-full h-full">
+          <!-- Left column container with background-->
+          <div
+            class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+            <!-- Right column container -->
+            <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+              <form method="POST">
+                <!--Sign in section-->
+                {% csrf_token %}
+                <div class="whitespace-nowrap rounded-full bg-purple-100 px-6 py-6 text-md text-purple-600 m-4 flex justify-center">
+                    <span class="text-2xl"> {{ title }} </span>
+                </div>
+              <br/>
+              {% comment %} already-made crispy form {% endcomment %}
+                {{ form|crispy }}
+                    <br/>
+                  <button
+                    type="submit"
+                    class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                    data-te-ripple-init
+                    data-te-ripple-color="light">
+                    {{ title }}
+                  </button>
+                <!-- Register link -->
+                  <br/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock content %}
